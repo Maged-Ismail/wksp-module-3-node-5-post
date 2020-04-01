@@ -1,0 +1,9 @@
+<%- include('../partials/header.ejs') %>
+<div>
+<ul>
+<% items.forEach(item => { %>
+    <li><%- item %></li>
+<% }); %>
+</ul>
+</div>
+<%- include('../partials/footer.ejs') %>

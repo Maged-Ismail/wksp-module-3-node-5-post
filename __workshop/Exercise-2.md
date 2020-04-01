@@ -1,6 +1,6 @@
 # Exercise 2
 
-Take a look at the form that is available at [`/order-form`](http://localhost:8000/user-form). The form itself in in the `public` folder.
+Take a look at the form that is available at [`/order-form`](http://localhost:8000/order-form). The form itself in in the `public` folder.
 
 It is an order form for promotional products. Users need to fill out the complete form. All fields are required.
 
@@ -53,7 +53,7 @@ const { stock, customers } = require('<PATH_TO_FILE>');
 The form communicates with the following endpoints:
 
 - `/order` (`POST` --> send the order details in an object.)
-- `/order-confirmation` (`GET` --> displays an order confirmation page.)
+- `/order-confirmed` (`GET` --> displays an order confirmation page.)
 
 ## Extra
 

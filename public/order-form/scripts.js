@@ -1,4 +1,3 @@
-const serverUrl = '';
 const orderItems = {
     undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
     bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
@@ -14,7 +13,7 @@ const errorMessages = {
 const submitButton = document.getElementById('confirm-button');
 const order = document.getElementById('order');
 const errorMsg = document.getElementById('error');
-const size = document.getElementById('sizing');
+const size = document.getElementById('size');
 const givenName = document.getElementById('givenName');
 const surname = document.getElementById('surname');
 const email = document.getElementById('email');
@@ -40,7 +39,6 @@ const handleToggleErrorMessage = (errorStatus) => {
 
 const handleSubmit = (event) => {
     event.preventDefault();
-
     submitButton.disabled = true;
 
     const data = {
@@ -56,7 +54,7 @@ const handleSubmit = (event) => {
         country: country.value
     };
 
-    fetch(`${serverUrl}/order`, {
+    fetch('/order', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -67,12 +65,15 @@ const handleSubmit = (event) => {
     .then(res => res.json())
     .then(data => {
         const { status, error } = data;
+        console.log({status, error});
+        // console.log(error);
+        
         if (status === 'success') {
             window.location.href = '/order-confirmed';
-        } else if (data.error) {
+        } else if (error) {
             submitButton.disabled = false;
             errorMsg.style.display = 'flex';
-            errorMsg.innerText = error;
+            errorMsg.innerText = errorMessages[error];
         }
     });
 }
